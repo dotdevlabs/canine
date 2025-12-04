@@ -3,7 +3,7 @@ name: Build and publish container image to GHCR
 on:
   push:
     branches:
-      - main
+      - ddl
     tags:
       - 'v*'
   workflow_dispatch:
