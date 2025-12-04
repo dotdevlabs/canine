@@ -92,6 +92,9 @@ COPY --from=build /usr/local/bin/helm /usr/local/bin/helm
 COPY --from=build /usr/local/bin/telepresence /usr/local/bin/telepresence
 COPY --from=build /usr/local/bin/pack /usr/local/bin/pack
 
+# Skip database creation by default (database should already exist)
+ENV SKIP_DB_CREATE="true"
+
 # Entrypoint prepares the database.
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 

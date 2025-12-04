@@ -9,8 +9,13 @@ fi
 # If running the rails server, bin/dev, or bin/run then create or migrate existing database
 echo "Checking if database needs to be prepared..."
 if [ "${1}" == "./bin/rails" ] && [ "${2}" == "server" ] || [ "${1}" == "./bin/dev" ] || [ "${1}" == "./bin/run" ]; then
+  if [ -z "${SKIP_DB_CREATE+x}" ] || [ "${SKIP_DB_CREATE}" != "true" ]; then
+    echo "Creating database..."
+    ./bin/rails db:create
+  else
+    echo "Skipping database creation (SKIP_DB_CREATE is set)..."
+  fi
   echo "Preparing database..."
-  ./bin/rails db:create
   ./bin/rails db:prepare
 fi
 
