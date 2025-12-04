@@ -93,6 +93,4 @@ test:
 #
 production:
   <<: *default
-  database: canine_production
-  username: canine
-  password: <%= ENV["CANINE_DATABASE_PASSWORD"] %>
+  url: <%= ENV["DATABASE_URL"] %>
